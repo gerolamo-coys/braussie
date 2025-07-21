@@ -1,0 +1,204 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Colour Palette */
+:root {
+  --primary-bg: #f4deb3;         /* Pale Sandy Brown */
+  --nav-bg: #e4cfa1;             /* Slightly darker for nav */
+  --text-color: #3D2B2C;         /* Dark Brown */
+  --hover-color: #d6bb8d;
+}
+
+/* Body */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--nav-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--hover-color);
+}
+
+/* Sections */
+.section {
+  padding: 100px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.section h1, .section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.section p {
+  max-width: 600px;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+/* Button */
+.btn {
+  background-color: var(--text-color);
+  color: #fff;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #2b1e1f;
+  transform: scale(1.05);
+}
+
+form {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  color: var(--text-color);
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+select[multiple] {
+  height: 100px;
+}
+
+input[type="file"] {
+  background-color: #f9f9f9;
+  padding: 10px;
+}
+input[type="file"]::file-selector-button {
+  background-color: var(--text-color);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Padding to prevent content hidden behind navbar */
+#home, #flavours, #about, #order {
+  padding-top: 120px;
+}
+
+.section {
+  display: none; /* Hide all sections by default */
+}
+
+.section.active {
+  display: flex; /* Show the active section */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Make form responsive on smaller screens */
+@media (max-width: 600px) {
+  form {
+    padding: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* Improve layout of checkbox group for flavour selection */
+.form-group div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-group input[type="checkbox"] {
+  margin-right: 5px;
+  transform: scale(1.1);
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+}
+
+/* Ensure multiple buttons don’t stick side-by-side on mobile */
+form .btn + .btn {
+  margin-left: 10px;
+}
+
+@media (max-width: 500px) {
+  form .btn + .btn {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}

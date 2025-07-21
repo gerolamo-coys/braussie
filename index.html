@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Braussie - Brigadeiros</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Hide all sections except active */
+    .section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .section.active {
+      display: flex;
+    }
+    /* Fix nav on top */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--nav-bg, #e4cfa1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color, #3D2B2C);
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .nav-links a:hover {
+      color: var(--hover-color, #d6bb8d);
+    }
+    /* Button styles */
+    .btn {
+      background-color: var(--text-color, #3D2B2C);
+      color: #fff;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      background-color: #2b1e1f;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+
+  
+  <header>
+    <nav class="navbar">
+      <div class="logo"><img src="logo.png" alt="Braussie Logo" style="height: 75px; width: auto;" /></div>
+      <ul class="nav-links">
+        <li><a onclick="showSection('home')">Home</a></li>
+        <li><a onclick="showSection('flavours')">Flavours</a></li>
+        <li><a onclick="showSection('order')">Order</a></li>
+        <li><a onclick="showSection('about')">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="section active">
+    <h1>Welcome to Braussie</h1>
+    <p>Handcrafted Brazilian Brigadeiros in Brisbane, Australia</p>
+    <button class="btn" onclick="showSection('flavours')">Explore Flavours</button>
+    <button class="btn" onclick="showSection('order')">Place an Order</button>
+  </section>
+
+  <section id="flavours" class="section">
+    <h2>Our Flavours</h2>
+    <p>Try our options</p>
+    <button class="btn" onclick="showSection('order')">Place an Order</button>
+    <button class="btn" onclick="showSection('home')">Back Home</button>
+  </section>
+
+<!-- ...keep all the content above unchanged -->
+
+<section id="order" class="section">
+  <h2>Place Your Order</h2>
+  <form action="https://formspree.io/f/xzzvzlwz" method="POST">
+    <div class="form-group">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required />
+    </div>
+
+    <div class="form-group">
+      <label>Select Flavours:</label>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <label><input type="checkbox" name="flavours[]" value="Traditional"> Traditional</label>
+        <label><input type="checkbox" name="flavours[]" value="Cacao 70%"> Cacao 70%</label>
+        <label><input type="checkbox" name="flavours[]" value="White Chocolate with Milk Powder"> White Chocolate with Milk Powder</label>
+        <label><input type="checkbox" name="flavours[]" value="Passionfruit Lime"> Passionfruit Lime</label>
+        <label><input type="checkbox" name="flavours[]" value="Romeo and Juliet (Cheese + Guava)"> Romeo and Juliet</label>
+        <label><input type="checkbox" name="flavours[]" value="Pistachio"> Pistachio</label>
+        <label><input type="checkbox" name="flavours[]" value="Beijinho (Coconut Ball)"> Beijinho (Coconut ball)</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <select id="quantity" name="quantity" required>
+        <option value="">-- Select Quantity --</option>
+        <option value="4 units - $11">4 units - $11</option>
+        <option value="6 units - $16">6 units - $16</option>
+        <option value="8 units - $20">8 units - $20</option>
+        <option value="12 units - $30">12 units - $30</option>
+        <option value="24 units - $52">24 units - $52</option>
+        <option value="50 units - $90">50 units - $90</option>
+        <option value="100 units - $170">100 units - $170</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn">Submit Order</button>
+    <button type="button" class="btn" onclick="showSection('home')">Cancel</button>
+  </form>
+</section>
+
+
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p>We're a small business bringing Brazilian sweetness to Australia, one brigadeiro at a time.</p>
+    <button class="btn" onclick="showSection('home')">Back Home</button>
+  </section>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+      window.scrollTo(0,0); // Scroll to top when switching
+    }
+  </script>
+
+
+
+</body>
+</html>
