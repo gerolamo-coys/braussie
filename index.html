@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Braussie - Brigadeiros</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     /* Hide all sections except active */
     .section {
@@ -67,21 +69,30 @@
 
 
   
-  <header>
-    <nav class="navbar">
-      <div class="logo"><img src="logo.png" alt="Braussie Logo" style="height: 75px; width: auto;" /></div>
-      <ul class="nav-links">
-        <li><a onclick="showSection('home')">Home</a></li>
-        <li><a onclick="showSection('flavours')">Flavours</a></li>
-        <li><a onclick="showSection('order')">Order</a></li>
-        <li><a onclick="showSection('about')">About Us</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Braussie Logo" style="height: 75px; width: auto;" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showSection('home')">Home</a></li>
+      <li><a href="#" onclick="showSection('flavours')">Flavours</a></li>
+      <li><a href="#" onclick="showSection('order')">Order</a></li>
+      <li><a href="#" onclick="showSection('about')">About Us</a></li>
+    </ul>
+  </nav>
+</header>  
 
-  <section id="home" class="section active">
+
+
+<section id="home" class="section active">
+    <div class="flags">
+    <img src="flags.png" alt="flags">
+
+  </div>
+
     <h1>Welcome to Braussie</h1>
-    <p>Handcrafted Brazilian Brigadeiros in Brisbane, Australia</p>
+    <p>Handcrafted Gourmet Brigadeiros in Brisbane, Australia</p>
     <button class="btn" onclick="showSection('flavours')">Explore Flavours</button>
     <button class="btn" onclick="showSection('order')">Place an Order</button>
   </section>
@@ -138,6 +149,11 @@
         <option value="50 units - $90">50 units - $90</option>
         <option value="100 units - $170">100 units - $170</option>
       </select>
+    </div>
+
+    <div class="form-group">
+      <label for="specialRequests">Special Requests:</label>
+      <input type="text" id="specialRequests" name="specialRequests" placeholder="Any special requests or notes?" />
     </div>
 
     <button type="submit" class="btn">Submit Order</button>
