@@ -35,13 +35,26 @@ body {
   padding: 1rem 2rem;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  height: 90px; /* Adjusted height for better spacing */
+
 }
+
+.top-separator {
+  height: 20px;
+  width: 100%;
+  background-color: #3D2B2C; /* Dark brown */
+  position: fixed;
+  top: 90px; /* Adjust based on your navbar height */
+  z-index: 999;
+}
+
 
 .navbar .logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: var(--text-color);
 }
+
 
 .nav-links {
   list-style: none;
@@ -59,6 +72,7 @@ body {
 .nav-links a:hover {
   color: var(--hover-color);
 }
+
 
 
 
@@ -252,3 +266,4 @@ form .btn + .btn {
     margin-top: 10px;
   }
 }
+
