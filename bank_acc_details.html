@@ -1,0 +1,119 @@
+<!-- thankyou.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Braussie - Brigadeiros</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Hide all sections except active */
+    .section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .section.active {
+      display: flex;
+    }
+    /* Fix nav on top */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--nav-bg, #f9f6f1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color, #5c3a27);
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .nav-links a:hover {
+      color: var(--hover-color, #D7C6AE);
+    }
+    /* Button styles */
+    .btn {
+      background-color: var(--text-color, #5c3a27);
+      color: #fff;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      background-color: #2b1e1f;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body
+
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Braussie Logo" style="height: 75px; width: auto;" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showSection('home')">Home</a></li>
+      <li><a href="#" onclick="showSection('flavours')">Flavours</a></li>
+      <li><a href="#" onclick="showSection('order')">Order</a></li>
+      <li><a href="#" onclick="showSection('about')">About Us</a></li>
+    </ul>
+  </nav>
+  <div class="top-separator"></div>
+</header> 
+
+
+  <section class="thankyou-section">
+    <h1>Thank You!</h1>
+    <p>To finish your order please effectuate the payment of <strong id="order-total">$0</strong> to the following account.</p>
+    <p>Account Name: Braussie Brigadeiros</p>
+    <p>Account Number: 123456789</p>
+    <p>Bank: Commonwealth Bank</p>
+    <p>Sort Code: 12-34-56</p>
+    <p>Once the payment is confirmed, we will process your order.</p>
+    <p>If you have any questions, please contact us at @braussie.au .</p>
+    </p>
+    <a href="index.html" class="btn">Back to Home</a>
+  </section>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const total = params.get('total');
+  if (total) {
+    document.getElementById('order-total').innerText = `$${total}`;
+  }
+</script>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Braussie Brigadeiros. All rights reserved.</p>
+    <p>Follow us on Instagram: <a href="https://instagram.com/braussie.au" target="_blank">@braussie.au</a></p>
+  </div>
+</footer>
+
+
+</body>
+</html>
+
