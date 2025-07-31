@@ -223,6 +223,34 @@ input[type="file"]::file-selector-button {
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .navbar .logo {
+    margin-bottom: 10px; /* adds space between logo and nav links */
+  }
+
+  .nav-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 10px 0;
+  }
+}
+
 
 /* Make form responsive on smaller screens */
 @media (max-width: 600px) {
@@ -328,3 +356,4 @@ form .btn + .btn {
 .footer a:hover {
   color: #fff;
 }
+
