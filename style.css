@@ -8,9 +8,9 @@
 
 /* Colour Palette */
 :root {
-  --primary-bg: #f4deb3;         /* Pale Sandy Brown */
-  --nav-bg: #e4cfa1;             /* Slightly darker for nav */
-  --text-color: #3D2B2C;         /* Dark Brown */
+  --primary-bg: #f9f6f1;         /* Pale Sandy Brown */
+  --nav-bg: #D7C6AE;             /* Slightly darker for nav */
+  --text-color: #5c3a27;         /* Dark Brown */
   --hover-color: #d6bb8d;
 }
 
@@ -267,3 +267,64 @@ form .btn + .btn {
   }
 }
 
+/* Thank You / Bank Account Details Section */
+.thankyou-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background-color: #f9f6f1; 
+  color: #3D2B2C;
+  min-height: 100vh;
+  text-align: center;
+  margin-top: 35px;
+}
+
+.thankyou-section h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.thankyou-section p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.thankyou-section .btn {
+  margin-top: 30px;
+  padding: 12px 24px;
+  background-color: #3D2B2C;
+  color: #D7C6AE;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.thankyou-section .btn:hover {
+  background-color: #5b3c3e;
+}
+
+.footer {
+  background-color: #3D2B2C;
+  color: #f4deb3;
+  padding: 20px 10px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  margin-top: auto;
+}
+
+.footer a {
+  color: #f4deb3;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: #fff;
+}
