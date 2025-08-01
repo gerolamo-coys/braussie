@@ -1,4 +1,6 @@
-/* General Reset */
+/* ---------------------------------- */
+/* 🌐 RESET + VARIABLES               */
+/* ---------------------------------- */
 * {
   margin: 0;
   padding: 0;
@@ -6,15 +8,16 @@
   scroll-behavior: smooth;
 }
 
-/* Colour Palette */
 :root {
-  --primary-bg: #f9f6f1;         /* Pale Sandy Brown */
-  --nav-bg: #D7C6AE;             /* Slightly darker for nav */
-  --text-color: #5c3a27;         /* Dark Brown */
+  --primary-bg: #f9f6f1;
+  --nav-bg: #D7C6AE;
+  --text-color: #5c3a27;
   --hover-color: #d6bb8d;
 }
 
-/* Body */
+/* ---------------------------------- */
+/* 🌟 BASE STYLES                     */
+/* ---------------------------------- */
 body {
   font-family: 'Quicksand', 'Segoe UI', sans-serif;
   background-color: var(--primary-bg);
@@ -22,8 +25,9 @@ body {
   line-height: 1.6;
 }
 
-
-/* Navbar */
+/* ---------------------------------- */
+/* 🔝 NAVIGATION BAR                  */
+/* ---------------------------------- */
 .navbar {
   position: fixed;
   top: 0;
@@ -33,28 +37,18 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
+  height: 90px;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  height: 90px; /* Adjusted height for better spacing */
-
 }
 
-.top-separator {
-  height: 20px;
-  width: 100%;
-  background-color: #3D2B2C; /* Dark brown */
-  position: fixed;
-  top: 90px; /* Adjust based on your navbar height */
-  z-index: 999;
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 85px;
+
 }
-
-
-.navbar .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--text-color);
-}
-
 
 .nav-links {
   list-style: none;
@@ -73,11 +67,61 @@ body {
   color: var(--hover-color);
 }
 
+/* Brown separator bar under nav */
+.top-separator {
+  height: 20px;
+  width: 100%;
+  background-color: #3D2B2C;
+  position: fixed;
+  top: 90px;
+  z-index: 999;
+}
 
+/* ---------------------------------- */
+/* 📱 MOBILE NAVIGATION               */
+/* ---------------------------------- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+  }
 
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
+    margin-top: 10px;
+    gap: 10px;
+  }
 
+  .nav-links a {
+    padding: 8px 0;
+  }
 
-/* Section transition animation */
+  .logo {
+    margin-right: auto;
+  }
+}
+
+/* ---------------------------------- */
+/* 📦 SECTION WRAPPER                 */
+/* ---------------------------------- */
+.section {
+  padding: 100px 20px;
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.section.active {
+  display: flex;
+  animation: fadeInUp 0.5s ease both;
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -88,51 +132,6 @@ body {
     transform: translateY(0) scale(1);
   }
 }
-
-.section.active {
-  display: flex;
-  animation: fadeInUp 0.5s ease both;
-}
-
-
-
-/* Sections */
-.section {
-  padding: 100px 20px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.flag-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
-  gap: 1rem;
-}
-
-.flags {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 1rem;
-  align-items: center;
-}
-
-.flags img {
-  width: 190px;
-  height: auto;
-  border-radius: 8px;
-}
-
-
-#home h1 {
-  padding-top: 10px; /* Reduce default spacing */
-}
-
 
 .section h1, .section h2 {
   font-size: 2.5rem;
@@ -145,7 +144,98 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Button */
+/* ---------------------------------- */
+/* 🇧🇷 FLAGS SECTION                  */
+/* ---------------------------------- */
+.flag-section,
+.flags {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.flags img {
+  width: 190px;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* ---------------------------------- */
+/* 🧾 FORM STYLES                     */
+/* ---------------------------------- */
+form {
+  width: 100%;
+  max-width: 500px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  color: var(--text-color);
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+input[type="file"] {
+  background-color: #f9f9f9;
+  padding: 10px;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: var(--text-color);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Checkboxes for flavours */
+.form-group div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.1);
+  margin-right: 5px;
+}
+
+/* Prevent overlapping behind navbar */
+#home, #flavours, #about, #order {
+  padding-top: 120px;
+}
+
+/* ---------------------------------- */
+/* 🔘 BUTTON STYLES                   */
+/* ---------------------------------- */
 .btn {
   background-color: var(--text-color);
   color: #fff;
@@ -161,141 +251,25 @@ body {
   transform: scale(1.05);
 }
 
-form {
-  width: 100%;
-  max-width: 500px;
-  margin-top: 20px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  color: var(--text-color);
-}
-
-.form-group {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input, select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-select[multiple] {
-  height: 100px;
-}
-
-input[type="file"] {
-  background-color: #f9f9f9;
-  padding: 10px;
-}
-input[type="file"]::file-selector-button {
-  background-color: var(--text-color);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* Padding to prevent content hidden behind navbar */
-#home, #flavours, #about, #order {
-  padding-top: 120px;
-}
-
-.section {
-  display: none; /* Hide all sections by default */
-}
-
-.section.active {
-  display: flex; /* Show the active section */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 20px;
-  }
-
-  .navbar .logo {
-    margin-bottom: 10px; /* adds space between logo and nav links */
-  }
-
-  .nav-links {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .nav-links li {
-    width: 100%;
-  }
-
-  .nav-links a {
-    display: block;
-    padding: 10px 0;
-  }
-}
-
-
-/* Make form responsive on smaller screens */
-@media (max-width: 600px) {
-  form {
-    padding: 15px;
-  }
-
-  .btn {
-    width: 100%;
-    margin-top: 10px;
-  }
-}
-
-/* Improve layout of checkbox group for flavour selection */
-.form-group div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.form-group input[type="checkbox"] {
-  margin-right: 5px;
-  transform: scale(1.1);
-}
-
-.form-group label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-weight: normal;
-}
-
-/* Ensure multiple buttons don’t stick side-by-side on mobile */
+/* Align multiple buttons properly */
 form .btn + .btn {
   margin-left: 10px;
 }
 
 @media (max-width: 500px) {
+  .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
   form .btn + .btn {
     margin-left: 0;
-    margin-top: 10px;
   }
 }
 
-/* Thank You / Bank Account Details Section */
+/* ---------------------------------- */
+/* ✅ THANK YOU / BANK DETAILS PAGE   */
+/* ---------------------------------- */
 .thankyou-section {
   display: flex;
   flex-direction: column;
@@ -327,18 +301,19 @@ form .btn + .btn {
   padding: 12px 24px;
   background-color: #3D2B2C;
   color: #D7C6AE;
-  border: none;
   border-radius: 8px;
   font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .thankyou-section .btn:hover {
   background-color: #5b3c3e;
 }
 
+/* ---------------------------------- */
+/* ⬇️ FOOTER                         */
+/* ---------------------------------- */
 .footer {
   background-color: #3D2B2C;
   color: #f4deb3;
@@ -356,4 +331,3 @@ form .btn + .btn {
 .footer a:hover {
   color: #fff;
 }
-
