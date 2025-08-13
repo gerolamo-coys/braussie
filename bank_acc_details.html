@@ -1,119 +1,769 @@
-<!-- thankyou.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Braussie - Brigadeiros</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Order Confirmation - Braussie Brigadeiros</title>
+  <meta name="description" content="Thank you for your order! Please complete your payment to finalize your brigadeiro order.">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  
   <style>
-    /* Hide all sections except active */
-    .section {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    /* ---------------------------------- */
+    /* 🌐 RESET + VARIABLES               */
+    /* ---------------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-bg: #f9f6f1;
+      --nav-bg: #D7C6AE;
+      --text-color: #5c3a27;
+      --hover-color: #d6bb8d;
+      --accent-color: #3D2B2C;
+      --white: #ffffff;
+      --success-color: #4caf50;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    /* ---------------------------------- */
+    /* 🌟 BASE STYLES                     */
+    /* ---------------------------------- */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Quicksand', 'Segoe UI', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      line-height: 1.6;
       min-height: 100vh;
-      padding: 100px 20px;
-      text-align: center;
-    }
-    .section.active {
       display: flex;
+      flex-direction: column;
     }
-    /* Fix nav on top */
+
+    /* ---------------------------------- */
+    /* 🔝 NAVIGATION BAR                  */
+    /* ---------------------------------- */
     .navbar {
       position: fixed;
       top: 0;
       width: 100%;
-      background-color: var(--nav-bg, #f9f6f1);
+      background-color: var(--nav-bg);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
       z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px var(--shadow);
     }
-    .nav-links {
-      list-style: none;
+
+    .logo {
       display: flex;
-      gap: 1.5rem;
+      align-items: center;
+      gap: 10px;
     }
+
+    .logo img {
+      max-height: 60px;
+      height: auto;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
     .nav-links a {
+      color: var(--text-color);
       text-decoration: none;
-      color: var(--text-color, #5c3a27);
       font-weight: 500;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--hover-color);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-color);
       cursor: pointer;
+      padding: 0.5rem;
     }
-    .nav-links a:hover {
-      color: var(--hover-color, #D7C6AE);
+
+    .top-separator {
+      height: 8px;
+      width: 100%;
+      background-color: var(--accent-color);
+      position: fixed;
+      top: 80px;
+      z-index: 999;
     }
-    /* Button styles */
+
+    /* ---------------------------------- */
+    /* 📱 MOBILE NAVIGATION               */
+    /* ---------------------------------- */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.75rem 1rem;
+      }
+
+      .menu-toggle {
+        display: block;
+        z-index: 1100;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 88px;
+        right: -100%;
+        width: 250px;
+        height: calc(100vh - 88px);
+        background-color: var(--nav-bg);
+        flex-direction: column;
+        padding: 2rem 1rem;
+        box-shadow: -5px 0 15px var(--shadow);
+        transition: right 0.3s ease;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links a {
+        padding: 1rem 0;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(92, 58, 39, 0.1);
+      }
+
+      .logo img {
+        max-height: 50px;
+      }
+
+      .top-separator {
+        top: 70px;
+      }
+    }
+
+    /* ---------------------------------- */
+    /* ✅ THANK YOU SECTION               */
+    /* ---------------------------------- */
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 20px 40px;
+      min-height: 100vh;
+    }
+
+    .thankyou-container {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      color: var(--success-color);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .thankyou-container h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .thankyou-container .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+
+    .customer-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 2rem;
+    }
+
+    .payment-card {
+      background-color: var(--white);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 30px var(--shadow);
+      margin: 2rem 0;
+      border-left: 5px solid var(--success-color);
+    }
+
+    .payment-card h2 {
+      color: var(--text-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .total-amount {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--success-color);
+      background: linear-gradient(135deg, #f9f6f1, #e8f5e8);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin: 1.5rem 0;
+      border: 2px solid #e0f2e0;
+    }
+
+    .payment-details {
+      text-align: left;
+      background-color: #fafafa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .payment-details h3 {
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    .payment-info {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .payment-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .payment-row:last-child {
+      border-bottom: none;
+    }
+
+    .payment-label {
+      font-weight: 600;
+      color: var(--text-color);
+      flex: 1;
+    }
+
+    .payment-value {
+      font-weight: 500;
+      color: var(--accent-color);
+      flex: 2;
+      text-align: right;
+      font-family: 'Courier New', monospace;
+    }
+
+    .copy-button {
+      background: none;
+      border: 1px solid var(--text-color);
+      color: var(--text-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .copy-button:hover,
+    .copy-button:focus {
+      background-color: var(--text-color);
+      color: var(--white);
+    }
+
+    .copy-button.copied {
+      background-color: var(--success-color);
+      border-color: var(--success-color);
+      color: var(--white);
+    }
+
+    .instructions {
+      background-color: #fff8e1;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #ffc107;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+
+    .instructions h3 {
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .instructions ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .instructions li {
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    .contact-info {
+      background-color: #e3f2fd;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      border-left: 4px solid #2196f3;
+    }
+
+    .contact-info h3 {
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-info a {
+      color: #1976d2;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------------------------------- */
+    /* 🔘 BUTTON STYLES                   */
+    /* ---------------------------------- */
     .btn {
-      background-color: var(--text-color, #5c3a27);
-      color: #fff;
-      padding: 0.8rem 1.6rem;
+      background-color: var(--text-color);
+      color: var(--white);
+      padding: 1rem 2rem;
       border: none;
       border-radius: 25px;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      margin: 0.5rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(92, 58, 39, 0.3);
     }
-    .btn:hover {
-      background-color: #2b1e1f;
-      transform: scale(1.05);
+
+    .btn:hover,
+    .btn:focus {
+      background-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(92, 58, 39, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-color);
+      border: 2px solid var(--text-color);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+      background-color: var(--text-color);
+      color: var(--white);
+    }
+
+    .action-buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ---------------------------------- */
+    /* ⬇️ FOOTER                          */
+    /* ---------------------------------- */
+    .footer {
+      background-color: var(--accent-color);
+      color: #f4deb3;
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .footer-content p {
+      margin: 0.5rem 0;
+    }
+
+    .footer a {
+      color: #f4deb3;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer a:hover,
+    .footer a:focus {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    /* ---------------------------------- */
+    /* 📱 MOBILE RESPONSIVENESS           */
+    /* ---------------------------------- */
+    @media (max-width: 600px) {
+      .main-content {
+        padding: 100px 15px 20px;
+      }
+
+      .payment-card {
+        padding: 1.5rem;
+        margin: 1rem 0;
+      }
+
+      .payment-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+
+      .payment-value {
+        text-align: left;
+        font-size: 0.9rem;
+      }
+
+      .total-amount {
+        font-size: 1.8rem;
+        padding: 1rem;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    /* ---------------------------------- */
+    /* ♿ ACCESSIBILITY IMPROVEMENTS       */
+    /* ---------------------------------- */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Focus indicators */
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--hover-color);
+      outline-offset: 2px;
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      :root {
+        --shadow: rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--success-color);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+      z-index: 2000;
+    }
+
+    .toast.show {
+      transform: translateX(0);
     }
   </style>
 </head>
 
-<body
+<body>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="logo">
+        <img src="logo.png" alt="Braussie Brigadeiros logo" />
+      </div>
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        ☰
+      </button>
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+        <li role="none"><a href="index.html#flavours" role="menuitem">Flavours</a></li>
+        <li role="none"><a href="index.html#order" role="menuitem">Order</a></li>
+        <li role="none"><a href="index.html#about" role="menuitem">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="top-separator" aria-hidden="true"></div>
+  </header>
 
-<header>
-  <nav class="navbar">
-    <div class="logo">
-      <img src="logo.png" alt="Braussie Logo" style="height: 75px; width: auto;" />
+  <main class="main-content">
+    <div class="thankyou-container">
+      <span class="success-icon" aria-hidden="true">✅</span>
+      
+      <h1>Thank You for Your Order!</h1>
+      
+      <p class="customer-name" id="customer-greeting">
+        <span id="customer-name-display"></span>
+      </p>
+      
+      <p class="subtitle">
+        Your brigadeiro order has been received. Please complete your payment to finalize the order.
+      </p>
+
+      <div class="payment-card">
+        <h2>Payment Required</h2>
+        
+        <div class="total-amount" role="status" aria-live="polite">
+          Total: <span id="order-total">$0.00</span>
+        </div>
+
+        <div class="payment-details">
+          <h3>Bank Transfer Details</h3>
+          <div class="payment-info">
+            <div class="payment-row">
+              <span class="payment-label">Account Name:</span>
+              <span class="payment-value">
+                Braussie Brigadeiros
+                <button class="copy-button" onclick="copyToClipboard('Braussie Brigadeiros', this)" aria-label="Copy account name">
+                  Copy
+                </button>
+              </span>
+            </div>
+            <div class="payment-row">
+              <span class="payment-label">BSB:</span>
+              <span class="payment-value">
+                062-000
+                <button class="copy-button" onclick="copyToClipboard('062-000', this)" aria-label="Copy BSB">
+                  Copy
+                </button>
+              </span>
+            </div>
+            <div class="payment-row">
+              <span class="payment-label">Account Number:</span>
+              <span class="payment-value">
+                123456789
+                <button class="copy-button" onclick="copyToClipboard('123456789', this)" aria-label="Copy account number">
+                  Copy
+                </button>
+              </span>
+            </div>
+            <div class="payment-row">
+              <span class="payment-label">Bank:</span>
+              <span class="payment-value">Commonwealth Bank of Australia</span>
+            </div>
+            <div class="payment-row">
+              <span class="payment-label">Reference:</span>
+              <span class="payment-value">
+                <span id="payment-reference">BRIG-ORDER</span>
+                <button class="copy-button" onclick="copyToClipboard(document.getElementById('payment-reference').textContent, this)" aria-label="Copy payment reference">
+                  Copy
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="instructions">
+          <h3>Payment Instructions:</h3>
+          <ol>
+            <li>Use your online banking or visit your bank branch</li>
+            <li>Set up a transfer to the account details above</li>
+            <li>Include the payment reference for easy identification</li>
+            <li>Send the exact amount shown above</li>
+            <li>Keep your receipt for reference</li>
+          </ol>
+          <p><strong>Important:</strong> Please use the payment reference to help us process your order quickly.</p>
+        </div>
+
+        <div class="contact-info">
+          <h3>Questions? Contact Us:</h3>
+          <p>Instagram: <a href="https://instagram.com/braussie.au" target="_blank" rel="noopener noreferrer">@braussie.au</a></p>
+          <p>We'll confirm receipt of your payment and provide pickup/delivery details within 24 hours.</p>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <a href="index.html" class="btn">Return to Home</a>
+        <button onclick="window.print()" class="btn btn-secondary">Print Details</button>
+      </div>
     </div>
-    <ul class="nav-links">
-      <li><a href="#" onclick="showSection('home')">Home</a></li>
-      <li><a href="#" onclick="showSection('flavours')">Flavours</a></li>
-      <li><a href="#" onclick="showSection('order')">Order</a></li>
-      <li><a href="#" onclick="showSection('about')">About Us</a></li>
-    </ul>
-  </nav>
-  <div class="top-separator"></div>
-</header> 
+  </main>
 
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Braussie Brigadeiros. All rights reserved.</p>
+      <p>Follow us on Instagram: <a href="https://instagram.com/braussie.au" target="_blank" rel="noopener noreferrer">@braussie.au</a></p>
+    </div>
+  </footer>
 
-  <section class="thankyou-section">
-    <h1>Thank You!</h1>
-    <p>To finish your order please effectuate the payment of <strong id="order-total">$0</strong> to the following account.</p>
-    <p>Account Name: Braussie Brigadeiros</p>
-    <p>Account Number: 123456789</p>
-    <p>Bank: Commonwealth Bank</p>
-    <p>Sort Code: 12-34-56</p>
-    <p>Once the payment is confirmed, we will process your order.</p>
-    <p>If you have any questions, please contact us at @braussie.au .</p>
-    </p>
-    <a href="index.html" class="btn">Back to Home</a>
-  </section>
+  <div class="toast" id="copyToast" role="status" aria-live="assertive">
+    Copied to clipboard!
+  </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
   const params = new URLSearchParams(window.location.search);
-  const total = params.get('total');
-  if (total) {
-    document.getElementById('order-total').innerText = `$${total}`;
+  let total = params.get('total');
+  let customerName = params.get('name');
+
+  // Fallback to localStorage if missing in URL
+  if (!total) {
+    total = localStorage.getItem('orderTotal');
   }
+  if (!customerName) {
+    customerName = localStorage.getItem('orderCustomerName');
+  }
+
+  console.log('Total:', total);
+  console.log('Customer name:', customerName);
+
+  // Display total amount
+  if (total) {
+    const totalNumber = parseFloat(total);
+    if (!isNaN(totalNumber)) {
+      document.getElementById('order-total').textContent = `$${totalNumber.toFixed(2)}`;
+    } else {
+      document.getElementById('order-total').textContent = '$0.00';
+    }
+  } else {
+    document.getElementById('order-total').textContent = '$0.00';
+  }
+
+  // Display customer name
+  if (customerName && customerName.trim() !== '') {
+    document.getElementById('customer-name-display').textContent = `Hello ${decodeURIComponent(customerName)}!`;
+  } else {
+    document.getElementById('customer-greeting').style.display = 'none';
+  }
+
+  // Generate unique payment reference
+  const orderRef = 'BRIG-' + Date.now().toString().slice(-6);
+  document.getElementById('payment-reference').textContent = orderRef;
+});
+
+// Copy to clipboard
+async function copyToClipboard(text, button) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-999999px';
+      textArea.style.top = '-999999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand('copy');
+      textArea.remove();
+    }
+    showCopySuccess(button);
+    showToast('Copied to clipboard!');
+  } catch (err) {
+    console.error('Failed to copy text: ', err);
+    showToast('Failed to copy. Please select and copy manually.', 'error');
+  }
+}
+
+function showCopySuccess(button) {
+  const originalText = button.textContent;
+  button.textContent = 'Copied!';
+  button.classList.add('copied');
+  setTimeout(() => {
+    button.textContent = originalText;
+    button.classList.remove('copied');
+  }, 2000);
+}
+
+function showToast(message, type = 'success') {
+  const toast = document.getElementById('copyToast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  toast.style.backgroundColor = type === 'error' ? '#f44336' : 'var(--success-color)';
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// Mobile menu
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', function() {
+    const isExpanded = navLinks.classList.contains('active');
+    navLinks.classList.toggle('active');
+    menuToggle.setAttribute('aria-expanded', !isExpanded);
+  });
+  document.addEventListener('click', function(event) {
+    if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+      navLinks.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
 </script>
-
-<footer class="footer">
-  <div class="footer-content">
-    <p>&copy; 2025 Braussie Brigadeiros. All rights reserved.</p>
-    <p>Follow us on Instagram: <a href="https://instagram.com/braussie.au" target="_blank">@braussie.au</a></p>
-  </div>
-</footer>
-
-
 </body>
 </html>
-
