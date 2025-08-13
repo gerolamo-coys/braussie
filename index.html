@@ -3,244 +3,416 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Braussie - Brigadeiros</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Braussie - Handcrafted Gourmet Brigadeiros</title>
+  <meta name="description" content="Handcrafted gourmet brigadeiros in Brisbane, Australia. Traditional Brazilian sweets with modern flavors.">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    /* Hide all sections except active */
-    .section {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 100px 20px;
-      text-align: center;
-    }
-    .section.active {
-      display: flex;
-    }
-    /* Fix nav on top */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: var(--nav-bg, #f9f6f1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-color, #5c3a27);
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .nav-links a:hover {
-      color: var(--hover-color, #D7C6AE);
-    }
-    /* Button styles */
-    .btn {
-      background-color: var(--text-color, #5c3a27);
-      color: #fff;
-      padding: 0.8rem 1.6rem;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      margin-top: 1rem;
-    }
-    .btn:hover {
-      background-color: #2b1e1f;
-      transform: scale(1.05);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-
-  
-<header>
-  <nav class="navbar">
-    <div class="logo">
-      <img src="logo.png" alt="Braussie Logo" style="height: 75px; width: auto;" />
-    </div>
-    <ul class="nav-links">
-      <li><a href="#" onclick="showSection('home')">Home</a></li>
-      <li><a href="#" onclick="showSection('flavours')">Flavours</a></li>
-      <li><a href="#" onclick="showSection('order')">Order</a></li>
-      <li><a href="#" onclick="showSection('about')">About Us</a></li>
-    </ul>
-  </nav>
-  <div class="top-separator"></div>
-</header>  
-
-
-<section id="home" class="section active">
-    <div class="flags">
-    <img src="flags.png" alt="flags">
-
-  </div>
-
-    <h1>Welcome to Braussie</h1>
-    <p>Handcrafted Gourmet Brigadeiros in Brisbane, Australia</p>
-    <button class="btn" onclick="showSection('flavours')">Explore Flavours</button>
-    <button class="btn" onclick="showSection('order')">Place an Order</button>
-  </section>
-
-  <section id="flavours" class="section">
-    <h2>Our Flavours</h2>
-    <p>Try our options</p>
-    <button class="btn" onclick="showSection('order')">Place an Order</button>
-    <button class="btn" onclick="showSection('home')">Back Home</button>
-  </section>
-
-<!-- ...keep all the content above unchanged -->
-
-<section id="order" class="section">
-  <h2>Place Your Order</h2>
-  <form 
-  id="order-form"
-  action="https://formspree.io/f/xzzvzlwz" method="POST">
-
-    <div class="form-group">
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required />
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email Address:</label>
-      <input type="email" id="email" name="email" required />
-    </div>
-
-    <div class="form-group">
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" required />
-    </div>
-
-    <div class="form-group">
-      <label>Select Flavours:</label>
-      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-        <label><input type="checkbox" name="flavours" value="Traditional"> Traditional</label>
-        <label><input type="checkbox" name="flavours" value="Cacao 70%"> Cacao 70%</label>
-        <label><input type="checkbox" name="flavours" value="White Chocolate with Milk Powder"> White Chocolate with Milk Powder</label>
-        <label><input type="checkbox" name="flavours" value="Passionfruit Lime"> Passionfruit Lime</label>
-        <label><input type="checkbox" name="flavours" value="Romeo and Juliet (Cheese + Guava)"> Romeo and Juliet</label>
-        <label><input type="checkbox" name="flavours" value="Pistachio"> Pistachio</label>
-        <label><input type="checkbox" name="flavours" value="Beijinho (Coconut Ball)"> Beijinho (Coconut ball)</label>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="logo">
+        <img src="logo.png" alt="Braussie Brigadeiros logo" />
       </div>
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        ☰
+      </button>
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a href="#" onclick="showSection('home')" role="menuitem">Home</a></li>
+        <li role="none"><a href="#" onclick="showSection('flavours')" role="menuitem">Flavours</a></li>
+        <li role="none"><a href="#" onclick="showSection('order')" role="menuitem">Order</a></li>
+        <li role="none"><a href="#" onclick="showSection('about')" role="menuitem">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="top-separator" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section id="home" class="section active" aria-labelledby="home-title">
+  <div class="home-content">
+    <h1 id="home-title">Welcome to Braussie</h1>
+    <p>Handcrafted Gourmet Brigadeiros in Brisbane, Australia</p>
+    <div class="home-buttons">
+      <button class="btn" onclick="showSection('flavours')">Explore Flavours</button>
+      <button class="btn" onclick="showSection('order')">Place an Order</button>
     </div>
+  </div>
+  <div class="home-image">
+    <img src="frame_brigadeiro.png" alt="Delicious handcrafted brigadeiros" class="frame_brigadeiro" />
+  </div>
+</section>
 
-    <div class="form-group">
-      <label for="quantity">Quantity:</label>
-      <select id="quantity" name="quantity" required>
-        <option value="">-- Select Quantity --</option>
-        <option value="4 units - $11">4 units - $11</option>
-        <option value="6 units - $16">6 units - $16</option>
-        <option value="8 units - $20">8 units - $20</option>
-        <option value="12 units - $30">12 units - $30</option>
-        <option value="24 units - $52">24 units - $52</option>
-        <option value="50 units - $90">50 units - $90</option>
-        <option value="100 units - $170">100 units - $170</option>
-      </select>
+    <section id="flavours" class="section" aria-labelledby="flavours-title">
+  <h2 id="flavours-title">Our Delicious Flavours</h2>
+  <p>Each brigadeiro is handcrafted with premium ingredients and traditional Brazilian techniques</p>
+  
+  <div class="flavours-grid">
+    <div class="flavour-card">
+      <img src="images/traditional.jpg" alt="Traditional Brigadeiro">
+      <h3>Traditional</h3>
+      <p>The classic Brazilian brigadeiro made with premium cocoa and condensed milk</p>
     </div>
-
-
-
-
-
-
-    <div class="form-group">
-      <label for="specialRequests">Special Requests:</label>
-      <input type="text" id="specialRequests" name="specialRequests" placeholder="Any special requests or notes?" />
+    <div class="flavour-card">
+      <img src="images/cacao70.jpg" alt="Cacao 70% Brigadeiro">
+      <h3>Cacao 70%</h3>
+      <p>Rich dark chocolate for the true chocolate connoisseurs</p>
     </div>
-
-    <button type="submit" class="btn">Submit Order</button>
-    <button type="button" class="btn" onclick="showSection('home')">Cancel</button>
-    <form action="bank_acc_details.html" method="get" style="display: none;">
-      <input type="hidden" name="orderSubmitted" value="true">
-  </form>
+    <div class="flavour-card">
+      <img src="images/white-chocolate.jpg" alt="White Chocolate with Milk Powder Brigadeiro">
+      <h3>White Chocolate with Milk Powder</h3>
+      <p>Creamy and sweet, a delightful twist on the classic</p>
+    </div>
+    <div class="flavour-card">
+      <img src="images/passionfruit-lime.jpg" alt="Passionfruit Lime Brigadeiro">
+      <h3>Passionfruit Lime</h3>
+      <p>Tropical and tangy, bringing Brazilian sunshine to your taste buds</p>
+    </div>
+    <div class="flavour-card">
+      <img src="images/romeo-juliet.jpg" alt="Romeo and Juliet Brigadeiro">
+      <h3>Romeo and Juliet</h3>
+      <p>The perfect marriage of cheese and guava - a Brazilian favorite</p>
+    </div>
+    <div class="flavour-card">
+      <img src="images/biscoff.jpg" alt="Biscoff Brigadeiro">
+      <h3>Biscoff</h3>
+      <p>The famous Belgian caramelised biscuit became a brigadeiro
+    </p>
+    </div>
+      </p>
+    <div class="flavour-card">
+      <img src="images/pistachio.jpg" alt="Pistachio Brigadeiro">
+      <h3>Pistachio</h3>
+      <p>Nutty and sophisticated, made with premium pistachios</p>
+    </div>
+    <div class="flavour-card">
+      <img src="images/beijinho.jpg" alt="Beijinho Coconut Brigadeiro">
+      <h3>Beijinho (Coconut Ball)</h3>
+      <p>Traditional coconut brigadeiro, as beloved as the original</p>
+    </div>
+  </div>
+  
+  <div style="margin-top: 2rem;">
+    <button class="btn" onclick="showSection('order')">Place an Order</button>
+    <button class="btn btn-secondary" onclick="showSection('home')">Back Home</button>
+  </div>
 </section>
 
 
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p>We're a small business bringing Brazilian sweetness to Australia, one brigadeiro at a time.</p>
-    <button class="btn" onclick="showSection('home')">Back Home</button>
-  </section>
+    <section id="order" class="section" aria-labelledby="order-title">
+      <h2 id="order-title">Place Your Order</h2>
+      <p>Ready to experience authentic Brazilian brigadeiros? Fill out the form below!</p>
+      
+      <form id="order-form" class="form-container" action="https://formspree.io/f/xzzvzlwz" method="POST" novalidate>
+        <div class="form-group">
+          <label for="name">Full Name <span aria-label="required">*</span></label>
+          <input type="text" id="name" name="name" required aria-describedby="name-error" />
+          <div id="name-error" class="error-message" aria-live="polite"></div>
+        </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("order-form");
+        <div class="form-group">
+          <label for="email">Email Address <span aria-label="required">*</span></label>
+          <input type="email" id="email" name="email" required aria-describedby="email-error" />
+          <div id="email-error" class="error-message" aria-live="polite"></div>
+        </div>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+        <div class="form-group">
+          <label for="phone">Phone Number <span aria-label="required">*</span></label>
+          <input type="tel" id="phone" name="phone" required aria-describedby="phone-error" />
+          <div id="phone-error" class="error-message" aria-live="polite"></div>
+        </div>
 
-      const quantity = document.getElementById("quantity").value;
-      const prices = {
-        "4 units - $11": 11,
-        "6 units - $16": 16,
-        "8 units - $20": 20,
-        "12 units - $30": 30,
-        "24 units - $52": 52,
-        "50 units - $90": 90,
-        "100 units - $170": 170
-      };
+        <div class="form-group">
+          <label>Select Flavours <span aria-label="required">*</span></label>
+          <div class="checkbox-group" role="group" aria-describedby="flavours-error">
+            <div class="checkbox-item">
+              <input type="checkbox" id="trad" name="flavours" value="Traditional" />
+              <label for="trad">Traditional</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cacao" name="flavours" value="Cacao 70%" />
+              <label for="cacao">Cacao 70%</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="white" name="flavours" value="White Chocolate with Milk Powder" />
+              <label for="white">White Chocolate with Milk Powder</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="passion" name="flavours" value="Passionfruit Lime" />
+              <label for="passion">Passionfruit Lime</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="romeo" name="flavours" value="Romeo and Juliet (Cheese + Guava)" />
+              <label for="romeo">Romeo and Juliet</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="pistachio" name="flavours" value="Pistachio" />
+              <label for="pistachio">Pistachio</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="beijinho" name="flavours" value="Beijinho (Coconut Ball)" />
+              <label for="beijinho">Beijinho (Coconut Ball)</label>
+            </div>
+          </div>
+          <div id="flavours-error" class="error-message" aria-live="polite"></div>
+        </div>
 
-      const total = prices[quantity];
+        <div class="form-group">
+          <label for="quantity">Quantity <span aria-label="required">*</span></label>
+          <select id="quantity" name="quantity" required aria-describedby="quantity-error">
+            <option value="">-- Select Quantity --</option>
+            <option value="4 units - $11">4 units - $11</option>
+            <option value="6 units - $16">6 units - $16</option>
+            <option value="8 units - $20">8 units - $20</option>
+            <option value="12 units - $30">12 units - $30</option>
+            <option value="24 units - $52">24 units - $52</option>
+            <option value="50 units - $90">50 units - $90</option>
+            <option value="100 units - $170">100 units - $170</option>
+          </select>
+          <div id="quantity-error" class="error-message" aria-live="polite"></div>
+        </div>
 
-      const formData = new FormData(form);
+        <div class="form-group">
+          <label for="specialRequests">Special Requests</label>
+          <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Type here your specific quantity for each flavour and/or specific instructions."></textarea>
+        </div>
 
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
+        <div class="form-group">
+          <label for="paymentMethod">Payment Method</label>
+          <select id="paymentMethod" name="paymentMethod" required>
+            <option value="">-- Select Payment Method --</option>
+            <option value="Bank Transfer">Bank Transfer</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+          </select>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Submit Order</button>
+          <button type="button" class="btn btn-secondary" onclick="showSection('home')">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-title">
+      <h2 id="about-title">About Braussie</h2>
+      <p>We're a passionate small business bringing the authentic taste of Brazilian brigadeiros to Brisbane, Australia. Each brigadeiro is lovingly handcrafted using traditional techniques and premium ingredients, creating the perfect fusion of Brazilian heritage and Australian quality.</p>
+      <p>Our name "Braussie" represents the beautiful blend of Brazilian ("Br") culture with Australian ("Aussie") warmth and hospitality.</p>
+      <button class="btn" onclick="showSection('home')">Back Home</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Braussie Brigadeiros. All rights reserved.</p>
+      <p>Follow us on Instagram: <a href="https://instagram.com/braussie.au" target="_blank" rel="noopener noreferrer">@braussie.au</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation functionality
+    function showSection(sectionId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Show target section
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+        
+        // Close mobile menu if open
+        const navLinks = document.querySelector('.nav-links');
+        const menuToggle = document.querySelector('.menu-toggle');
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+        
+        // Focus management for accessibility
+        targetSection.focus();
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+          const isExpanded = navLinks.classList.contains('active');
+          navLinks.classList.toggle('active');
+          menuToggle.setAttribute('aria-expanded', !isExpanded);
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
           }
         });
 
-        if (response.ok) {
-          form.reset();
-          window.location.href = `bank_acc_details.html?total=${total}`;
-        } else {
-          alert("There was a problem submitting your form. Please try again.");
-        }
-      } catch (error) {
-        alert("Error: " + error.message);
+        // Close menu on escape key
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.focus();
+          }
+        });
+        }); // <-- This closes menuToggle.addEventListener('click', ...)
       }
     });
-  });
-</script>
+    // End of mobile menu toggle
 
-<script>
-  function showSection(sectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-      section.classList.remove('active');
+    // Form handling with validation
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('order-form');
+      if (!form) return;
+
+      // Form validation functions
+      function validateField(field, errorElementId, validationFn, errorMessage) {
+        const errorElement = document.getElementById(errorElementId);
+        const isValid = validationFn(field.value);
+        
+        if (!isValid) {
+          field.setAttribute('aria-invalid', 'true');
+          errorElement.textContent = errorMessage;
+          errorElement.style.color = '#d32f2f';
+          errorElement.style.fontSize = '0.875rem';
+          errorElement.style.marginTop = '0.25rem';
+        } else {
+          field.setAttribute('aria-invalid', 'false');
+          errorElement.textContent = '';
+        }
+        
+        return isValid;
+      }
+
+      function validateName(value) {
+        return value.trim().length >= 2;
+      }
+
+      function validateEmail(value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(value);
+      }
+
+      function validatePhone(value) {
+        const phoneRegex = /^[\+]?[\d\s\-\(\)]{8,}$/;
+        return phoneRegex.test(value.trim());
+      }
+
+      function validateFlavours() {
+        const checkboxes = document.querySelectorAll('input[name="flavours"]:checked');
+        return checkboxes.length > 0;
+      }
+
+      function validateQuantity(value) {
+        return value.trim() !== '';
+      }
+
+      // Real-time validation
+      const nameField = document.getElementById('name');
+      const emailField = document.getElementById('email');
+      const phoneField = document.getElementById('phone');
+      const quantityField = document.getElementById('quantity');
+      const flavourCheckboxes = document.querySelectorAll('input[name="flavours"]');
+
+      if (nameField) {
+        nameField.addEventListener('blur', function() {
+          validateField(this, 'name-error', validateName, 'Please enter a valid name (at least 2 characters)');
+        });
+      }
+
+      if (emailField) {
+        emailField.addEventListener('blur', function() {
+          validateField(this, 'email-error', validateEmail, 'Please enter a valid email address');
+        });
+      }
+
+      if (phoneField) {
+        phoneField.addEventListener('blur', function() {
+          validateField(this, 'phone-error', validatePhone, 'Please enter a valid phone number');
+        });
+      }
+
+      if (quantityField) {
+        quantityField.addEventListener('change', function() {
+          validateField(this, 'quantity-error', validateQuantity, 'Please select a quantity');
+        });
+      }
+
+    flavourCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const errorElement = document.getElementById('flavours-error');
+        if (validateFlavours()) {
+          errorElement.textContent = '';
+        } else {
+          errorElement.textContent = 'Please select at least one flavour';
+          errorElement.style.color = '#d32f2f';
+          errorElement.style.fontSize = '0.875rem';
+          errorElement.style.marginTop = '0.25rem';
+        }
+      });
     });
-    document.getElementById(sectionId).classList.add('active');
+
+    // Form submission
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // Validate
+  const isNameValid = validateField(nameField, 'name-error', validateName, 'Please enter a valid name (at least 2 characters)');
+  const isEmailValid = validateField(emailField, 'email-error', validateEmail, 'Please enter a valid email address');
+  const isPhoneValid = validateField(phoneField, 'phone-error', validatePhone, 'Please enter a valid phone number');
+  const isFlavoursValid = validateFlavours();
+  const isQuantityValid = validateField(quantityField, 'quantity-error', validateQuantity, 'Please select a quantity');
+
+  if (!(isNameValid && isEmailValid && isPhoneValid && isFlavoursValid && isQuantityValid)) {
+    return; // stop if invalid
   }
-</script>
 
-<footer class="footer">
-  <div class="footer-content">
-    <p>&copy; 2025 Braussie Brigadeiros. All rights reserved.</p>
-    <p>Follow us on Instagram: <a href="https://instagram.com/braussie.au" target="_blank">@braussie.au</a></p>
-  </div>
-</footer>
+  // Get values
+  // Get the displayed text, not the value attribute
+  const selectedOption = quantityField.options[quantityField.selectedIndex];
+  const quantityText = selectedOption.textContent.trim();
 
+  const priceMatch = quantityText.match(/\$([\d.]+)/);
+  const totalAmount = priceMatch ? parseFloat(priceMatch[1]).toFixed(2) : '0.00';
+  const customerName = nameField.value.trim();
+  const flavours = Array.from(document.querySelectorAll('input[name="flavours"]:checked'))
+    .map(checkbox => checkbox.value)
+    .join(', ');
+  const specialRequests = document.getElementById('specialRequests').value.trim();
+  const email = emailField.value.trim();
+  const phone = phoneField.value.trim();
+  const orderDetails = {
+    name: customerName,
+    email: email,
+    phone: phone,
+    flavours: flavours,
+    quantity: quantityText,
+    specialRequests: specialRequests,
+    totalAmount: totalAmount
+  };
+  // Save to localStorage
+  localStorage.setItem('orderCustomerName', customerName);
+  localStorage.setItem('orderTotal', totalAmount);
 
-</body>
-</html>
+  try {
+    const formData = new FormData(form);
+    await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+  } catch (err) {
+    console.error('Formspree error:', err);
+  }
 
-
+  // Redirect — no query params needed
+  window.location.href = 'bank_acc_details.html';
+});
+      }); // <-- This closes form.addEventListener('submit', ...)
+  </script>
