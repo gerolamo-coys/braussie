@@ -166,12 +166,18 @@
             <option value="12 units - $30">12 units - $30</option>
             <option value="24 units - $52">24 units - $52</option>
             <option value="50 units - $90">50 units - $90</option>
-            <option value="100 units - $170">100 units - $170</option>
           </select>
           <div id="quantity-error" class="error-message" aria-live="polite"></div>
         </div>
+        
 
-        <div class="form-group">
+        <div class ="info-box" role="alert">
+          <strong>Note:</strong> Want a bigger order? For quantities over 50 units, please send us a message on WhatsApp <a href="https://wa.me/message/BAQUUSJTBWJ7N1" target="_blank" rel="noopener noreferrer">here</a> for a custom quote and availability.
+        </div>
+
+        <div class = 'space' style ='height: 1rem;' aria-hidden="true"></div>
+
+          <div class="form-group">
           <label for="specialRequests">Special Requests</label>
           <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Type here your specific quantity for each flavour and/or specific instructions."></textarea>
         </div>
@@ -183,6 +189,12 @@
             <option value="Bank Transfer">Bank Transfer</option>
             <option value="Cash on Delivery">Cash on Delivery</option>
           </select>
+        </div>
+
+        <div class="form-group">
+          <label for="delivery date">Preferred Delivery Date</label>
+          <input type="date" id="deliveryDate" name="deliveryDate" required />
+        </div>
 
         <div class="form-actions">
           <button type="submit" class="btn">Submit Order</button>
@@ -190,6 +202,42 @@
         </div>
       </form>
     </section>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const deliveryInput = document.getElementById("deliveryDate");
+    const quantitySelect = document.getElementById("quantity");
+
+    function updateMinDate() {
+      const selected = quantitySelect.value;
+      if (!selected) return; // nothing selected yet
+
+      // Extract the first number from the option text (e.g., "24 units - $52")
+      const units = parseInt(selected);
+
+      let minDaysAhead = 1; // default: 1 day
+      if (units >= 24) {
+        minDaysAhead = 2; // 2 days ahead for big orders
+      }
+
+      const today = new Date();
+      today.setDate(today.getDate() + minDaysAhead);
+      deliveryInput.min = today.toISOString().split("T")[0];
+
+      // If user already picked a date earlier than allowed, reset it
+      if (deliveryInput.value && deliveryInput.value < deliveryInput.min) {
+        deliveryInput.value = "";
+      }
+    }
+
+    // Run when quantity changes
+    quantitySelect.addEventListener("change", updateMinDate);
+
+    // Also run once on page load (in case quantity is pre-filled)
+    updateMinDate();
+  });
+</script>
+
 
     <section id="about" class="section" aria-labelledby="about-title">
       <h2 id="about-title">About Braussie</h2>
@@ -416,3 +464,5 @@ form.addEventListener('submit', async function(e) {
 });
       }); // <-- This closes form.addEventListener('submit', ...)
   </script>
+
+<span style="text-decoration: underline;">here</span>
